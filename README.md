@@ -1,4 +1,6 @@
 # Ring
+[![Build Status](https://travis-ci.org/mar29th/ring.svg?branch=master)](https://travis-ci.org/mar29th/ring)
+
 Python-native message queue.
 
 This module is intended to substitute ZMQ when ZMQ does not
