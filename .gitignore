@@ -89,3 +89,6 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# Ignore macOS .DS_Store
+.DS_Store
