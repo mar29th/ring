@@ -14,6 +14,7 @@
 
 
 import functools
+import os
 import unittest
 
 from ring.co import make_coroutine, run_sync
@@ -54,3 +55,8 @@ def blocking_recv(so, length):
         length -= len(received)
         buf.append(received)
     return ''.join(buf)
+
+
+def skip_on_ci(fun):
+    dec = unittest.skipIf(getattr(os.environ, 'CI', False), 'Test skipped on CI')
+    return dec(fun)

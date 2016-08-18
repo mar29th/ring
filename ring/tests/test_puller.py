@@ -24,7 +24,7 @@ from ring.context import Context
 from ring.events import Mailbox
 from ring.protocol import generate_payload_frame
 from ring.puller import PullerConnectionImpl
-from ring.tests.utils import blocking_send
+from ring.tests.utils import blocking_send, skip_on_ci
 from ring.utils import raise_exc_info
 
 
@@ -121,9 +121,11 @@ class TestPuller(unittest.TestCase):
     def test_unidirectional_recv_1M_with_300_iterations(self):
         self._test_unidirectional_recv('a' * 1024 * 1024, 1, 300)
 
+    @skip_on_ci
     def test_unidirectional_recv_1M_with_100_iterations_50_clients(self):
         self._test_unidirectional_recv('a' * 1024 * 1024, 50, 100)
 
+    @skip_on_ci
     def test_unidirectional_recv_1M_with_100_iterations_50_connections(self):
         self._test_unidirectional_recv_with_connection('a' * 1024 * 1024, 50, 100)
 

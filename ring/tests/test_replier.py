@@ -25,7 +25,7 @@ from ring.context import Context
 from ring.events import Mailbox
 from ring.protocol import generate_payload_frame
 from ring.replier import ReplierConnectionImpl
-from ring.tests.utils import blocking_send, blocking_recv
+from ring.tests.utils import blocking_send, blocking_recv, skip_on_ci
 from ring.utils import raise_exc_info
 
 
@@ -177,10 +177,12 @@ class TestReplier(unittest.TestCase):
         for _ in xrange(300):
             self._test_simple_receive_and_send('a' * 1024 * 1024, 1)
 
+    @skip_on_ci
     def test_1M_with_100_iterations_50_clients(self):
         for _ in xrange(100):
             self._test_simple_receive_and_send('a' * 1024 * 1024, 50)
 
+    @skip_on_ci
     def test_1M_with_100_iterations_50_connections(self):
         for _ in xrange(100):
             self._test_simple_receive_and_send_with_connection('a' * 1024 * 1024, 50)
