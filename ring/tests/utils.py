@@ -58,5 +58,5 @@ def blocking_recv(so, length):
 
 
 def skip_on_ci(fun):
-    dec = unittest.skipIf(getattr(os.environ, 'CI', False), 'Test skipped on CI')
-    return dec(fun)
+    return unittest.skipIf(
+        'CI' in os.environ and os.environ['CI'] == 'true', 'Test skipped on CI')(fun)
